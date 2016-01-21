@@ -41,14 +41,22 @@ public class MyConstants {
 	public static final int WORLD_HEIGHT = 720;
 	
 	/**
+	 * @param radians The angle in radians of the velocity
+	 * @param speed The speed of the velocity
+	 * @return A velocity of the given speed moving at the given angle as a {@link com.badlogic.gdx.math.Vector2 Vector2}
+	 */
+	public static Vector2 generateVelocity(float radians, float speed) {
+		float x = MathUtils.cos(radians) * speed;
+		float y = MathUtils.sin(radians) * speed;
+		return new Vector2(x, y);
+	}
+	
+	/**
 	 * @param speed The speed of the velocity
 	 * @return A Velocity of the given speed in a random direction as a {@link com.badlogic.gdx.math.Vector2 Vector2}
 	 */
 	public static Vector2 randomVelocity(float speed) {
-		float radians = MathUtils.random(MathUtils.PI2);
-		float x = MathUtils.cos(radians) * speed;
-		float y = MathUtils.sin(radians) * speed;
-		return new Vector2(x, y);
+		return MyConstants.generateVelocity(MathUtils.random(MathUtils.PI2), speed);
 	}
 	
 	/**
