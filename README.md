@@ -8,7 +8,7 @@ MLG Remix of Super Breakout
 Click the "Fork" button at the top right of the webpage.
 
 ### Create the Project
-Create a project using the libGDX project creater that can be found [here](https://libgdx.badlogicgames.com/download.html). Make sure the project has the name: "MLG Breakout" and the package name is "com.sshsgs.mlgbreakout". Make sure the project has both and only "Controllers" and "Freetype" checked, then make sure that in advanced, "Eclipse" is checked. 
+Create a project using the libGDX project creater that can be found [here](https://libgdx.badlogicgames.com/download.html). Make sure the project has the name: "MLG Breakout" and the package name is "com.sshsgd.mlgbreakout". Make sure the project has both and only "Controllers" and "Freetype" checked, then make sure that in advanced, "Eclipse" is checked. 
 
 ### Linking your files to the Repository
 Copy the .git link on the right hand side of your fork of the repository. Open GitShell and cd to your project's folder. Type in the following commands:
