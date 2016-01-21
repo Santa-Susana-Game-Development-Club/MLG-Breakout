@@ -3,22 +3,34 @@ package com.sshsgd.mlgbreakout;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.sshsgd.mlgbreakout.MyConstants.*;
+import com.sshsgd.mlgbreakout.managers.*;
 
 public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
 	
 	public static final String GAME_TITE = "MLG Breakout";
 	
 	private float fpsTime;
 	private int fps, frames;
 	
+	public static final States defaultState = States.Play;
+	
+	public static Vector2 SIZE, CENTER;
+	
+	private GameStateManager gsm;
+	
 	@Override
 	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		
+		int width = Gdx.graphics.getWidth();
+		int height = Gdx.graphics.getHeight();
+		Game.SIZE = new Vector2();
+		Game.CENTER = new Vector2();
+		Game.SIZE.set(width, height);
+		Game.CENTER.set(width * .5f, height * .5f);
+		
+		gsm = new GameStateManager();
 		
 		frames = 0;
 		fps = 0;
@@ -29,11 +41,12 @@ public class Game extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
 		
 		float dt = Gdx.graphics.getDeltaTime();
+		
+		gsm.handleInput();
+		gsm.update(dt);
+		gsm.draw(dt);
 		
 		fpsTime += dt;
 		frames++;
@@ -44,5 +57,17 @@ public class Game extends ApplicationAdapter {
 		}
 		
 		Gdx.graphics.setTitle(String.format("%s | FPS: %d", Game.GAME_TITE, fps));
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		Game.SIZE.set(width, height);
+		Game.CENTER.set(width * .5f, height * .5f);
+		gsm.resize(width, height);
+	}
+
+	@Override
+	public void dispose() {
+		gsm.dispose();
 	}
 }
