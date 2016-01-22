@@ -2,6 +2,7 @@ package com.sshsgd.mlgbreakout;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.sshsgd.mlgbreakout.MyConstants.*;
@@ -14,11 +15,13 @@ public class Game extends ApplicationAdapter {
 	private float fpsTime;
 	private int fps, frames;
 	
-	public static final States defaultState = States.Play;
+	public static final States defaultState = States.Splash;
 	
 	public static Vector2 SIZE, CENTER;
 	
 	private GameStateManager gsm;
+	
+	public static Content res;
 	
 	@Override
 	public void create () {
@@ -30,6 +33,14 @@ public class Game extends ApplicationAdapter {
 		Game.SIZE.set(width, height);
 		Game.CENTER.set(width * .5f, height * .5f);
 		
+		res = new Content();
+		
+		res.loadBitmapFont("font", "faucet.ttf", "main", 56, Color.WHITE);
+		res.loadBitmapFont("font", "faucet.ttf", "splash", 72, Color.WHITE);
+		res.loadBitmapFont("font", "faucet.ttf", "small", 32, Color.WHITE);
+		
+		res.loadAnimationFromFolder("snoop", "snoop", 58, "0.04");
+		
 		gsm = new GameStateManager();
 		
 		frames = 0;
@@ -39,7 +50,7 @@ public class Game extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		float dt = Gdx.graphics.getDeltaTime();
@@ -69,5 +80,6 @@ public class Game extends ApplicationAdapter {
 	@Override
 	public void dispose() {
 		gsm.dispose();
+		res.dispose();
 	}
 }
