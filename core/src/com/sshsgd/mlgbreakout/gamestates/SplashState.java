@@ -53,6 +53,7 @@ public class SplashState extends GameState {
 		
 		stateTime = 0;
 		timer = 8;
+		Game.res.getSound("X Files").play();
 		setValues();
 	}
 
@@ -79,9 +80,9 @@ public class SplashState extends GameState {
 		time += dt;
 		if(time >= timer) {
 			time = 0;
-			gsm.setState(States.Play);
+			gsm.setState(States.Title);
 		}
-		angle = 360 * (time / timer);
+		angle = MyConstants.clamp(360 * (time / 7.654f), 0, 360);
 	}
 
 	@Override
