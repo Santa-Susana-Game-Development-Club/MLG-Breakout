@@ -1,5 +1,6 @@
 package com.sshsgd.mlgbreakout.managers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.Gdx;
@@ -13,12 +14,14 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.math.MathUtils;
 
 public class Content {
 	private HashMap<String, Music> music;
 	private HashMap<String, Sound> sound;
 	private HashMap<String, BitmapFont> font;
 	private HashMap<String, Animation> anim;
+	private ArrayList<String> animKeys;
 	GlyphLayout gl;
 	Texture temp;
 	
@@ -27,6 +30,7 @@ public class Content {
 		sound = new HashMap<String, Sound>();
 		font = new HashMap<String, BitmapFont>();
 		anim = new HashMap<String, Animation>();
+		animKeys = new ArrayList<String>();
 		gl = new GlyphLayout();
 	}
 	
@@ -103,10 +107,12 @@ public class Content {
 			frames[i] = new TextureRegion(temp);
 		}
 		anim.put(key, new Animation(new Float(delay), frames));
+		animKeys.add(key);
 	}
 	
 	public void loadAnimation(String key, Animation animation) {
 		anim.put(key, animation);
+		animKeys.add(key);
 	}
 	
 	public Animation getAnimation(String key) {
@@ -115,6 +121,14 @@ public class Content {
 	
 	public TextureRegion getKeyFrame(String key, float stateTime, boolean looping) {
 		return anim.get(key).getKeyFrame(stateTime, looping);
+	}
+	
+	public String getRandomAnimKey() {
+		return animKeys.get(MathUtils.random(animKeys.size()));
+	}
+	
+	public Animation getRandomAnimation() {
+		return anim.get(getRandomAnimKey());
 	}
 	
 	/*
