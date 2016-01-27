@@ -2,6 +2,7 @@ package com.sshsgd.mlgbreakout.gamestates;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.sshsgd.mlgbreakout.Game;
 import com.sshsgd.mlgbreakout.managers.GameStateManager;
 
 public class TitleState extends GameState {
@@ -12,7 +13,8 @@ public class TitleState extends GameState {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
+		Game.res.stopAllSound();
+		Game.res.getMusic("darude").play();
 
 	}
 

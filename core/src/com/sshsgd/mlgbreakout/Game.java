@@ -35,11 +35,16 @@ public class Game extends ApplicationAdapter {
 		
 		res = new Content();
 		
+		res.loadSound("sound", "xfiles.mp3", "X Files");
+		
+		res.loadMusic("music", "sandstorm.mp3", "darude", true);
+		
 		res.loadBitmapFont("font", "faucet.ttf", "main", 56, Color.WHITE);
 		res.loadBitmapFont("font", "faucet.ttf", "splash", 72, Color.WHITE);
 		res.loadBitmapFont("font", "faucet.ttf", "small", 32, Color.WHITE);
 		
 		res.loadAnimationFromFolder("snoop", "snoop", 58, "0.04");
+		res.loadAnimationFromFolder("mlg logo", "mlglogo", 29, "0.1");
 		
 		gsm = new GameStateManager();
 		
