@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.sshsgd.mlgbreakout.MyConstants.*;
 import com.sshsgd.mlgbreakout.managers.*;
+import com.sshsgd.mlgbreakout.managers.input.*;
 
 public class Game extends ApplicationAdapter {
 	
@@ -51,6 +52,7 @@ public class Game extends ApplicationAdapter {
 		frames = 0;
 		fps = 0;
 		fpsTime = 0;
+		Gdx.input.setInputProcessor(new MyInputProcessor());
 	}
 
 	@Override
@@ -73,6 +75,7 @@ public class Game extends ApplicationAdapter {
 		}
 		
 		Gdx.graphics.setTitle(String.format("%s | FPS: %d", Game.GAME_TITE, fps));
+		MyInput.update();
 	}
 
 	@Override
