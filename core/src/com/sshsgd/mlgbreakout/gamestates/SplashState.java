@@ -13,6 +13,7 @@ import com.sshsgd.mlgbreakout.MyCamera;
 import com.sshsgd.mlgbreakout.MyConstants;
 import com.sshsgd.mlgbreakout.MyConstants.States;
 import com.sshsgd.mlgbreakout.managers.GameStateManager;
+import com.sshsgd.mlgbreakout.managers.input.MyInput;
 
 public class SplashState extends GameState {
 
@@ -59,8 +60,10 @@ public class SplashState extends GameState {
 
 	@Override
 	public void handleInput() {
-		// TODO Auto-generated method stub
-
+		if(MyInput.isPressed(MyInput.START)) {
+			time = 0;
+			gsm.setState(States.Title);
+		}
 	}
 
 	private void setValues() {
