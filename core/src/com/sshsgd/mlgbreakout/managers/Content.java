@@ -123,12 +123,20 @@ public class Content {
 		return anim.get(key).getKeyFrame(stateTime, looping);
 	}
 	
+	public String getAnimKey(int index) {
+		return animKeys.get(index);
+	}
+	
 	public String getRandomAnimKey() {
 		return animKeys.get(MathUtils.random(animKeys.size()));
 	}
 	
 	public Animation getRandomAnimation() {
 		return anim.get(getRandomAnimKey());
+	}
+	
+	public int getNumAnims() {
+		return anim.size();
 	}
 	
 	/*
